@@ -1,7 +1,10 @@
 {
+    "name": "youbou-show-hooks",
     "scripts": {
         "start": "wp-scripts start assets/js/*.js",
-        "build": "wp-scripts build assets/js/*.js"
+        "build": "wp-scripts build assets/js/*.js",
+        "lint:php": "vendor/bin/phpcs",
+        "lint:php:fix": "vendor/bin/phpcbf"
     },
     "dependencies": {
         "@wordpress/scripts": "^27.1.0"

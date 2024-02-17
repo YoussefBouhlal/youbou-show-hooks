@@ -9,7 +9,7 @@
 namespace YoubouShowHooks;
 
 if ( ! defined( 'ABSPATH' ) ) {
-    return;
+	return;
 }
 
 /**
@@ -41,7 +41,6 @@ class Plugin {
 	 * Constructor method.
 	 */
 	public function __construct() {
-		
 	}
 
 	/**
@@ -61,5 +60,4 @@ class Plugin {
 	public function plugin_path() {
 		return untrailingslashit( YOUBOUSHOWHOOKS_PATH );
 	}
-
 }

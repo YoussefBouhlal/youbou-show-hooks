@@ -1,20 +1,23 @@
 <?php
 /**
- * Plugin Name: Youbou Show Hooks
- * Plugin URI: https://github.com/YoussefBouhlal/youbou-show-hooks.git
- * Description: Show all hooks that are being used on the current page.
- * Version: 1.0.0
- * Author: Youssef Bouhlal
- * Author URI: https://youssefbouhlal.com
- * Textdomain: youboushowhooks
- * Domain Path: /languages
- * Requires PHP: 7.4
+ * Plugin Name:       Youbou Show Hooks
+ * Plugin URI:        https://github.com/YoussefBouhlal/youbou-show-hooks.git
+ * Description:       Show all hooks that are being used on the current page.
+ * Version:           1.0.0
+ * Requires at least: 5.2
+ * Requires PHP:      7.2
+ * Author:            Youssef Bouhlal
+ * Author URI:        https://youssefbouhlal.com
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       youboushowhooks
+ * Domain Path:       /languages
  *
  * @package YoubouShowHooks
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    return;
+	return;
 }
 
 define( 'YOUBOUSHOWHOOKS_PATH', plugin_dir_path( __FILE__ ) );
