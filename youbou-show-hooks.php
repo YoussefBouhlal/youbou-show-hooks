@@ -16,26 +16,16 @@
  * @package YoubouShowHooks
  */
 
-use NewsletterGate\Plugin;
+namespace YoubouShowHooks;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
 }
 
-define( 'YOUBOUSHOWHOOKS_PATH', plugin_dir_path( __FILE__ ) );
-define( 'YOUBOUSHOWHOOKS_URL', plugin_dir_url( __FILE__ ) );
-define( 'YOUBOUSHOWHOOKS_VERSION', '1.0.0' );
+const VERSION     = '1.0.0';
+const PLUGIN_FILE = __FILE__;
 
-require_once YOUBOUSHOWHOOKS_PATH . 'vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/includes/class-main.php';
 
-/**
- * Get YoubouShowHooks Instance.
- *
- * @return void
- */
-function youboushowhooks_init() {
-
-	Plugin::get_instance();
-}
-
-add_action( 'plugins_loaded', 'youboushowhooks_init' );
+Main::bootstrap();
