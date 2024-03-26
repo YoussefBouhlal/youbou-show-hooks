@@ -28,9 +28,14 @@ final class Main {
 	/**
 	 * Constructor
 	 */
-	public static function bootstrap() {
+	public function init() {
 
-		add_action( 'plugins_loaded', array( __CLASS__, 'load' ) );
+		$toggle = new Toggle();
+
+		register_activation_hook( PLUGIN_FILE, array( $toggle, 'activate' ) );
+		register_deactivation_hook( PLUGIN_FILE, array( $toggle, 'deactivate' ) );
+
+		add_action( 'plugins_loaded', array( $this, 'load' ) );
 	}
 
 	/**
@@ -38,11 +43,15 @@ final class Main {
 	 *
 	 * @since  1.0.0
 	 */
-	public static function load() {
+	public function load() {
 
-		if ( ! self::check_plugin_requirements() ) {
+		if ( ! $this->check_plugin_requirements() ) {
 			return;
 		}
+
+		load_plugin_textdomain( 'youboushowhooks', false, plugin_basename( PLUGIN_FILE ) . '/languages' );
+
+		do_action( 'youboushowhooks_loaded' );
 	}
 
 	/**
@@ -50,7 +59,7 @@ final class Main {
 	 *
 	 * @return boolean
 	 */
-	private static function check_plugin_requirements() {
+	private function check_plugin_requirements() {
 
 		$errors = array();
 		global $wp_version;

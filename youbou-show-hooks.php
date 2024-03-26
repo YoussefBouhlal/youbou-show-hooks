@@ -26,6 +26,6 @@ const VERSION     = '1.0.0';
 const PLUGIN_FILE = __FILE__;
 
 require __DIR__ . '/vendor/autoload.php';
-require __DIR__ . '/includes/class-main.php';
 
-Main::bootstrap();
+$main = new Main();
+$main->init();
