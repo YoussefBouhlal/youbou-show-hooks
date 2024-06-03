@@ -8,6 +8,8 @@
 
 namespace YoubouShowHooks;
 
+use YoubouShowHooks\Admin\Settings_page;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
 }
@@ -50,6 +52,9 @@ final class Main {
 		}
 
 		load_plugin_textdomain( 'youboushowhooks', false, plugin_basename( PLUGIN_FILE ) . '/languages' );
+
+		$settings_page_class = new Settings_page();
+		$settings_page_class->init();
 
 		do_action( 'youboushowhooks_loaded' );
 	}
