@@ -19,12 +19,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Settings_page {
 
+    const SETTINGS_ID = 'youbou_show_hooks_settings';
+
     /**
      * Initialize class
      */
     public function init() {
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_styles' ) );
         add_action( 'admin_menu', array( $this, 'add_page' ) );
+        add_action( 'init', array( $this, 'register_settings' ) );
     }
 
     /**
@@ -78,6 +81,36 @@ class Settings_page {
         printf(
             '<div class="wrap" id="youbou-show-hooks">%s</div>',
             esc_html__( 'Loading…', 'youboushowhooks' )
+        );
+    }
+
+    /**
+     * Register settings
+     */
+    public function register_settings() {
+
+        $default = array(
+            'message' => __( 'This is the default text.', 'youbou-show-hooks' ),
+        );
+        $schema  = array(
+            'type'       => 'object',
+            'properties' => array(
+                'message' => array(
+                    'type' => 'string',
+                ),
+            ),
+        );
+
+        register_setting(
+            'options',
+            self::SETTINGS_ID,
+            array(
+                'type'         => 'object',
+                'default'      => $default,
+                'show_in_rest' => array(
+                    'schema' => $schema,
+                ),
+            )
         );
     }
 }
