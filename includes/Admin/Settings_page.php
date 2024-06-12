@@ -90,11 +90,15 @@ class Settings_page {
     public function register_settings() {
 
         $default = array(
-            'message' => __( 'This is the default text.', 'youbou-show-hooks' ),
+            'pluginsStatus' => $this->plugins_status(),
+            'message'       => __( 'This is the default text.', 'youbou-show-hooks' ),
         );
         $schema  = array(
             'type'       => 'object',
             'properties' => array(
+                'pluginsStatus' => array(
+                    'type' => 'array',
+                ),
                 'message' => array(
                     'type' => 'string',
                 ),
@@ -112,5 +116,15 @@ class Settings_page {
                 ),
             )
         );
+    }
+
+    /**
+     * Get all plugins
+     */
+    private function plugins_status() {
+        $plugins = wp_get_active_and_valid_plugins();
+        // $plugins = array_keys( $plugins );
+
+        // error_log( print_r( $plugins, true ) );
     }
 }

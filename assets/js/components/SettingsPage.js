@@ -22,15 +22,22 @@ const SettingsPage = () => {
 
     const [ message, setMessage ] = useState('');
     const [ plugins, setPlugins ] = useState([]);
+    const [ pluginsStatus, setPluginsStatus ] = useState([]);
 
     const { createSuccessNotice, createErrorNotice } = useDispatch( store );
 
     useEffect( () => {
         apiFetch( { path: '/wp/v2/settings' } ).then( ( settings ) => {
+            setPluginsStatus( settings.youbou_show_hooks_settings.pluginsStatus );
             setMessage( settings.youbou_show_hooks_settings.message );
         } );
 
         apiFetch( { path: '/wp/v2/plugins' } ).then( ( plugins ) => {
+
+            plugins.forEach( ( plugin ) => {
+                console.log( plugin );
+                // plugin.active = pluginsStatus[ plugin.slug ] || false;
+            } );
             setPlugins( plugins );
         } );
     }, [] );
@@ -79,7 +86,7 @@ const SettingsPage = () => {
                     onChange={function noRefCheck() {}}
                     checked
                 />
-                <Flex wrap={true}>
+                <Flex wrap={true} justify='start'>
                     <PluginsToggles />
                 </Flex>
             </PanelBody>
