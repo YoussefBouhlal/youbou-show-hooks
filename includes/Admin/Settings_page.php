@@ -93,6 +93,7 @@ class Settings_Page {
 
 		$default = array(
 			'pluginsStatus' => $this->plugins_status(),
+			'showTheme'     => '1',
 		);
 		$schema  = array(
 			'type'       => 'object',
@@ -102,6 +103,9 @@ class Settings_Page {
 					'items' => array(
 						'type' => 'string',
 					),
+				),
+				'showTheme'     => array(
+					'type' => 'string',
 				),
 			),
 		);

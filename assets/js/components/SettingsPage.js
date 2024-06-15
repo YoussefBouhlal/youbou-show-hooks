@@ -15,9 +15,10 @@ import {
 import Notices from './Notices.js';
 
 const SettingsPage = () => {
-	const [ checkAll, setCheckAll ] = useState( false );
+	const [ checkAll, setCheckAll ] = useState( true );
 	const [ allPlugins, setAllPlugins ] = useState( [] );
 	const [ pluginsStatus, setPluginsStatus ] = useState( [] );
+	const [ showTheme, setShowTheme ] = useState( '1' );
 
 	const { createSuccessNotice, createErrorNotice } = useDispatch( store );
 
@@ -26,6 +27,7 @@ const SettingsPage = () => {
 			setPluginsStatus(
 				settings.youbou_show_hooks_settings.pluginsStatus
 			);
+			setShowTheme( settings.youbou_show_hooks_settings.showTheme );
 		} );
 
 		apiFetch( { path: '/wp/v2/plugins' } ).then( ( plugins ) => {
@@ -73,6 +75,10 @@ const SettingsPage = () => {
 		} );
 	};
 
+	const changeTheme = ( e ) => {
+		setShowTheme( e ? '1' : '0' );
+	};
+
 	const saveSettings = () => {
 		apiFetch( {
 			path: '/wp/v2/settings',
@@ -80,6 +86,7 @@ const SettingsPage = () => {
 			data: {
 				youbou_show_hooks_settings: {
 					pluginsStatus,
+					showTheme,
 				},
 			},
 		} )
@@ -98,8 +105,14 @@ const SettingsPage = () => {
 	return (
 		<>
 			<Notices />
-			<Panel header={ __( 'Settings', 'youbou-show-hooks' ) }>
+			<Panel header={ __( 'Youbou Show Hooks', 'youbou-show-hooks' ) }>
 				<PanelBody>
+					<p>
+						{ __(
+							'Select the plugins you want to show.',
+							'youbou-show-hooks'
+						) }
+					</p>
 					<ToggleControl
 						label={ __( 'All', 'youbou-show-hooks' ) }
 						onChange={ changeAll }
@@ -108,6 +121,15 @@ const SettingsPage = () => {
 					<Flex wrap={ true } justify="start">
 						<PluginsToggles />
 					</Flex>
+				</PanelBody>
+				<PanelBody>
+					<p>
+						{ __( 'Show the theme hooks.', 'youbou-show-hooks' ) }
+					</p>
+					<ToggleControl
+						onChange={ changeTheme }
+						checked={ showTheme === '1' }
+					/>
 				</PanelBody>
 			</Panel>
 			<Button variant="primary" onClick={ saveSettings }>
