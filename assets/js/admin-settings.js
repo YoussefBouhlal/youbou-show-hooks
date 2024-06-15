@@ -6,9 +6,6 @@ import SettingsPage from './components/SettingsPage';
 import '../scss/admin-settings.scss';
 
 domReady( () => {
-    const root = createRoot(
-        document.getElementById( 'youbou-show-hooks' )
-    );
-
-    root.render( <SettingsPage /> );
+	const root = createRoot( document.getElementById( 'youbou-show-hooks' ) );
+	root.render( <SettingsPage /> );
 } );

@@ -3,6 +3,8 @@
     "scripts": {
         "start": "wp-scripts start assets/js/*.js",
         "build": "wp-scripts build assets/js/*.js",
+        "lint:js": "wp-scripts lint-js assets/js",
+		"lint:css": "wp-scripts lint-style './assets/scss/*.scss'",
         "lint:php": "vendor/bin/phpcs",
         "lint:php:fix": "vendor/bin/phpcbf"
     },
