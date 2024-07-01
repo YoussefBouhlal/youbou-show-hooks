@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Install class
+ * Settings page functionalities.
  */
 class Settings_Page {
 
@@ -28,6 +28,7 @@ class Settings_Page {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_styles' ) );
 		add_action( 'admin_menu', array( $this, 'add_page' ) );
 		add_action( 'init', array( $this, 'register_settings' ) );
+		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 2 );
 	}
 
 	/**
@@ -121,6 +122,22 @@ class Settings_Page {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Add settings link to the plugin listing page
+	 *
+	 * @param array  $actions     An array of plugin action links.
+	 * @param string $plugin_file Path to the plugin file relative to the plugins directory.
+	 *
+	 * @return array
+	 */
+	public function add_settings_link( $actions, $plugin_file ) {
+		if ( 'youbou-show-hooks/youbou-show-hooks.php' === $plugin_file ) {
+			$actions['settings'] = '<a href="options-general.php?page=youbou-show-hooks">' . __( 'Settings', 'youboushowhooks' ) . '</a>';
+		}
+
+		return $actions;
 	}
 
 	/**

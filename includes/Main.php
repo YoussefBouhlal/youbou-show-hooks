@@ -9,6 +9,7 @@
 namespace YoubouShowHooks;
 
 use YoubouShowHooks\Admin\Settings_Page;
+use YoubouShowHooks\Front\Show_Hooks;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
@@ -32,6 +33,7 @@ final class Main {
 	 */
 	public function init() {
 
+		new Show_Hooks();
 		$toggle = new Toggle();
 
 		register_activation_hook( PLUGIN_FILE, array( $toggle, 'activate' ) );

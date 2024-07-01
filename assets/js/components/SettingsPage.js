@@ -31,7 +31,10 @@ const SettingsPage = () => {
 		} );
 
 		apiFetch( { path: '/wp/v2/plugins' } ).then( ( plugins ) => {
-			setAllPlugins( plugins );
+			const newPlugins = plugins.filter( plugin => {
+				return 'youbou-show-hooks/youbou-show-hooks' !== plugin.plugin;
+			});
+			setAllPlugins( newPlugins );
 		} );
 	}, [] );
 
