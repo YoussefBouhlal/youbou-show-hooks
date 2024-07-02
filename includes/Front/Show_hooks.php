@@ -22,21 +22,24 @@ class Show_Hooks {
 	 */
 	public function __construct() {
 
-		add_filter( 'all', array( $this, 'hook_all_hooks' ), 100, 2 );
+		if ( wp_doing_ajax() ) {
+			return;
+		}
+
+		add_filter( 'all', array( $this, 'hook_all_hooks' ), 100 );
 	}
 
 	/**
 	 * Hook all hooks.
 	 */
-	public function hook_all_hooks( $one, $two = null ) {
+	public function hook_all_hooks( $hook, $extra_data = null ) {
 
-		if ( wp_doing_ajax() ) {
-			// error_log( 'ajax' );
-			return $one;
+		if ( $hook === 'plugin_loaded' ) {
+			// $plugin_slug = plugin_basename( $extra_data );
+			// error_log( 'AAA: ' . $extra_data );
+			// $this->plugins[] = $plugin_slug;
 		}
 
-		// error_log( 'not ajax' );
-
-		return $one;
+		return $hook;
 	}
 }
