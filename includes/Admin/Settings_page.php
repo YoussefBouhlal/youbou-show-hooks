@@ -49,7 +49,7 @@ class Settings_Page {
 						return wp_style_is( $style, 'registered' );
 					}
 				),
-				$assets['version'],
+				$assets['version']
 			);
 
 			wp_enqueue_script(
