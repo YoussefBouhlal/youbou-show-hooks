@@ -4,7 +4,7 @@
     "license": "GPL-3.0+",
     "require-dev": {
         "wp-coding-standards/wpcs": "^3.0",
-		"phpcompatibility/php-compatibility": "*"
+		"phpcompatibility/phpcompatibility-wp": "*"
     },
     "config": {
         "allow-plugins": {
@@ -20,12 +20,12 @@
 	"scripts": {
 		"lint:php": "./vendor/bin/phpcs",
         "lint:php:fix": "./vendor/bin/phpcbf",
-		"compatibility:php-7.1": "./vendor/bin/phpcs ./includes -s --standard=PHPCompatibility --runtime-set testVersion 7.1",
-		"compatibility:php-7.2": "./vendor/bin/phpcs ./includes -s --standard=PHPCompatibility --runtime-set testVersion 7.2",
-		"compatibility:php-7.3": "./vendor/bin/phpcs ./includes -s --standard=PHPCompatibility --runtime-set testVersion 7.3",
-		"compatibility:php-7.4": "./vendor/bin/phpcs ./includes -s --standard=PHPCompatibility --runtime-set testVersion 7.4",
-		"compatibility:php-8.0": "./vendor/bin/phpcs ./includes -s --standard=PHPCompatibility --runtime-set testVersion 8.0",
-		"compatibility:php-8.1": "./vendor/bin/phpcs ./includes -s --standard=PHPCompatibility --runtime-set testVersion 8.1",
-		"compatibility:php-8.2": "./vendor/bin/phpcs ./includes -s --standard=PHPCompatibility --runtime-set testVersion 8.2"
+		"compatibility:php-7.1": "./vendor/bin/phpcs -p . --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 7.1-",
+		"compatibility:php-7.2": "./vendor/bin/phpcs -p . --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 7.2-",
+		"compatibility:php-7.3": "./vendor/bin/phpcs -p . --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 7.3-",
+		"compatibility:php-7.4": "./vendor/bin/phpcs -p . --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 7.4-",
+		"compatibility:php-8.0": "./vendor/bin/phpcs -p . --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 8.0-",
+		"compatibility:php-8.1": "./vendor/bin/phpcs -p . --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 8.1-",
+		"compatibility:php-8.2": "./vendor/bin/phpcs -p . --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 8.2-"
   	}
 }
